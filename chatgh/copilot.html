@@ -1,31 +1,59 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<title>Windows 12 Copilot (Non-sidebar Recreated)</title>
-		<link rel="stylesheet" href="/win12/apps/style/copilot.css">
-	</head>
-  <body>
-  		<div class="titbar">
-			  <p class="text">Windows 12 Copilot</p>
-			<div class="alr">
-				<span class="btn about" onclick="shownotice('about-copilot')">
-					<i class="bi bi-info-circle"></i>
-				</span>
-				<span class="btn hide" onclick="$('#copilot').removeClass('show')">
-					<i class="bi bi-chevron-bar-right"></i>
-				</span>
-			</div>
-		</div>
-		<div class="chat"><div class="line system"><p class="text">本 AI 助手基于 Deepseek v4 pro 模型，目前支持以下操作：<br>
-        1.打开除 webapp 外大多应用<br>
-        2.在浏览器中打开链接、搜索<br>
-        3.发送对系统、AI 助手的反馈<br>
-        4.切换颜色主题<br>
-        需注意，根据相关法律法规，我们不向欧盟用户提供服务。</p></div><div class="line ai"><p class="text">欢迎使用 Windows 12，有什么可以帮您？</p></div><div class="line user"><p class="text">What's your name??</p></div><div class="line ai"><p class="text">我的名字是AI&nbsp;Copilot，由云智API提供支持。</p></div><div class="line user"><p class="text">Please speak in English</p></div><div class="line ai"><p class="text">My&nbsp;name&nbsp;is&nbsp;AI&nbsp;Copilot,&nbsp;powered&nbsp;by&nbsp;Cloud&nbsp;Intelligence&nbsp;API.</p></div></div>
-		<div class="inputbox">
-			<input type="text" class="input" onkeydown="if(event.keyCode==13){copilot.send($(this).val());$(this).val('');this.blur()}" data-ddg-inputtype="unknown">
-			<a class="a send btn" onclick="copilot.send($('#copilot&gt;.inputbox&gt;.input').val());$('#copilot&gt;.inputbox&gt;.input').val('');" data-i18n="copilot.send">Send</a>
-		</div>
-	</div>
-  </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows 12 Copilot</title>
+    <!-- Bootstrap Icons (required for the bi classes) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Target stylesheet -->
+    <link rel="stylesheet" href="/win12/apps/style/copilot.css">
+</head>
+<body>
+
+    <div id="copilot" class="show">
+        <div class="titbar">
+            <p class="text">Windows 12 Copilot</p>
+            <div class="alr">
+                <span class="btn about" onclick="shownotice('about-copilot')">
+                    <i class="bi bi-info-circle"></i>
+                </span>
+                <span class="btn hide" onclick="$('#copilot').removeClass('show')">
+                    <i class="bi bi-chevron-bar-right"></i>
+                </span>
+            </div>
+        </div>
+        <div class="chat">
+            <div class="line system">
+                <p class="text">本 AI 助手基于 Deepseek v4 pro 模型，目前支持以下操作：<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.打开除 webapp 外大多应用<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.在浏览器中打开链接、搜索<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.发送对系统、AI 助手的反馈<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.切换颜色主题<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;需注意，根据相关法律法规，我们不向欧盟用户提供服务。</p>
+            </div>
+            <div class="line ai">
+                <p class="text">欢迎使用 Windows 12，有什么可以帮您？</p>
+            </div>
+        </div>
+        <div class="inputbox">
+            <input type="text" class="input" onkeydown="if(event.keyCode==13){copilot.send($(this).val());$(this).val('');this.blur()}">
+            <a class="a send btn" onclick="copilot.send($('#copilot&gt;.inputbox&gt;.input').val());$('#copilot&gt;.inputbox&gt;.input').val('');" data-i18n="copilot.send">Send</a>
+        </div>
+    </div>
+
+    <!-- jQuery (required for $ selectors and functions used inline) -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        // Mock fallback object so inline event handlers don't throw errors when tested standalone
+        window.copilot = window.copilot || {
+            send: function(text) {
+                console.log("Copilot send triggered with:", text);
+            }
+        };
+        function shownotice(noticeId) {
+            console.log("Show notice triggered for:", noticeId);
+        }
+    </script>
+</body>
 </html>
