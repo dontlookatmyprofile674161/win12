@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Windows 12 Copilot</title>
-    <!-- Bootstrap Icons (required for the bi classes) -->
+    <!-- Bootstrap Icons (required for bi classes) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <!-- Target stylesheet -->
-    <link rel="stylesheet" href="/win12/apps/style/copilot.css">
+    <link rel="stylesheet" href="/win12/apps/styles/copilot.css">
 </head>
 <body>
 
@@ -24,35 +24,25 @@
             </div>
         </div>
         <div class="chat">
-            <div class="line system">
-                <p class="text">本 AI 助手基于 Deepseek v4 pro 模型，目前支持以下操作：<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.打开除 webapp 外大多应用<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.在浏览器中打开链接、搜索<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.发送对系统、AI 助手的反馈<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.切换颜色主题<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;需注意，根据相关法律法规，我们不向欧盟用户提供服务。</p>
-            </div>
-            <div class="line ai">
-                <p class="text">欢迎使用 Windows 12，有什么可以帮您？</p>
-            </div>
+            <a class="a btn button" onclick="copilot.init()" style="display: inline-block;margin-top: 10px;" data-i18n="copilot.start">开始对话</a>
+            <p style="margin-top: 10px;" data-i18n="copilot.p">使用前请先点击右上 "<i class="bi bi-info-circle"></i>" 查看使用注意事项</p>
         </div>
-        <div class="inputbox">
+        <div class="inputbox disable">
             <input type="text" class="input" onkeydown="if(event.keyCode==13){copilot.send($(this).val());$(this).val('');this.blur()}">
-            <a class="a send btn" onclick="copilot.send($('#copilot&gt;.inputbox&gt;.input').val());$('#copilot&gt;.inputbox&gt;.input').val('');" data-i18n="copilot.send">Send</a>
+            <a class="a send btn" onclick="copilot.send($('#copilot&gt;.inputbox&gt;.input').val());$('#copilot&gt;.inputbox&gt;.input').val('');" data-i18n="copilot.send">发送</a>
         </div>
     </div>
 
-    <!-- jQuery (required for $ selectors and functions used inline) -->
+    <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script>
-        // Mock fallback object so inline event handlers don't throw errors when tested standalone
-        window.copilot = window.copilot || {
-            send: function(text) {
-                console.log("Copilot send triggered with:", text);
-            }
+        // Mock functions for standalone testing
+        window.copilot = {
+            init: function() { console.log("copilot.init() called"); },
+            send: function(val) { console.log("copilot.send() called with:", val); }
         };
-        function shownotice(noticeId) {
-            console.log("Show notice triggered for:", noticeId);
+        function shownotice(id) {
+            console.log("shownotice called with:", id);
         }
     </script>
 </body>
