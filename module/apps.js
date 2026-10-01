@@ -2857,3 +2857,4 @@ Micrȯsoft Windows [版本 12.0.39035.7324]
 // （归一化 apps.explorer↔apps.edge 后逐行 diff，51 行里只有 4 行不同，全是按钮选择器）。
 Object.assign(apps.explorer, createHistoryStack('explorer', '#win-explorer>.path>.back', '#win-explorer>.path>.front'));
 Object.assign(apps.edge, createHistoryStack('edge', '#win-edge>.tool>.back', '#win-edge>.tool>.front'));
+window.apps = apps
